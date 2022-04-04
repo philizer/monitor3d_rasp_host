@@ -1,5 +1,5 @@
 
-
+const ip_rasp = '172.21.72.103'
 const delay = 10000 // interval in ms
 
 function advancement() {
@@ -9,7 +9,7 @@ function advancement() {
   if (interval === undefined) {
     interval = setInterval(async () => {
       // const response = await fetch('http://127.0.0.1:8080/advancement', {
-      const response = await fetch('http://127.0.0.1:8000/advancement', {
+      const response = await fetch('http://'+ip_rasp+'/advancement', {
         method: 'GET'
       })
       const data = (await response.json())
@@ -24,7 +24,7 @@ function position() {
 
   if (interval === undefined) {
     interval = setInterval(async () => {
-      const response = await fetch('http://127.0.0.1:8000/position', {
+      const response = await fetch('http://'+ip_rasp+'/position', {
         method: 'GET'
       })
       const data = (await response.json())
@@ -38,7 +38,7 @@ async function commandPost() {
   // e.preventDefault()
   const commandInput = document.getElementById('commandList')
 
-  let url = "http://127.0.0.1:8000/cmd";
+  let url = 'http://'+ip_rasp+'/cmd';
   let xhr = new XMLHttpRequest();
   xhr.open("POST", url);
   xhr.setRequestHeader("Accept", "application/json");
@@ -61,7 +61,7 @@ async function commandPost() {
 
 // handle file 
 const fileinput = document.getElementById('fileinput')
-const url = "http://127.0.0.1:8000/uploadGcode"
+const url = 'http://'+ip_rasp+'/uploadGcode'
 const fileform = document.getElementById('fileForm')
 const currentfile = document.getElementById('currentFile')
 fileform.addEventListener('change', async (e) => {
